@@ -1,4 +1,15 @@
 apply plugin: 'android-library'
+apply plugin: 'maven'
+
+archivesBaseName = 'appmsg-library'
+
+configurations {
+  deployerJars
+}
+
+dependencies {
+  deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
+}
 
 android {
   compileSdkVersion 17
@@ -12,3 +23,12 @@ android {
     }
   }
 }
+
+uploadArchives {
+  repositories.mavenDeployer {
+    configuration = configurations.deployerJars
+    repository(url: "scp://ds4.dev.meetup.com/var/www/ds4.dev.meetup.com/htdocs/repo")
+    pom.artifactId = 'appmsg-library'
+  }
+}
+

@@ -8,3 +8,11 @@ buildscript {
   }
 }
 
+allprojects {
+  group = 'com.github.johnkil.android-appmsg'
+  version = '1.0.1'
+
+  repositories {
+    mavenCentral()
+  }
+}
